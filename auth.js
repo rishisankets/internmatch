@@ -1,4 +1,4 @@
-const API = "http://127.0.0.1:5000/api";
+const API = "https://internmatch-api-c0mq.onrender.com/api";
 
 // Show error message on the page
 function showError(message) {

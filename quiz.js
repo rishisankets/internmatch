@@ -161,7 +161,7 @@ async function submitQuiz() {
   const flatAnswers = answers.map(a => a.join(", "));
 
   try {
-    const response = await fetch("http://127.0.0.1:5000/api/quiz/submit", {
+    const response = await fetch("https://internmatch-api-c0mq.onrender.com/api/quiz/submit", {
       method: "POST",
       headers: {
         "Content-Type":  "application/json",

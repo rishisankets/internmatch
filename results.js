@@ -3,7 +3,7 @@ if (!localStorage.getItem("token")) window.location.href = "login.html";
 
 function logout() {
   localStorage.removeItem("token");
-  localStorage.removeItem("user");
+  localStorage.removeItem("user");    
   window.location.href = "index.html";
 }
 
@@ -18,7 +18,7 @@ async function loadResults() {
   }
 
   try {
-    const response = await fetch("http://127.0.0.1:5000/api/recommend", {
+    const response = await fetch("https://internmatch-api-c0mq.onrender.com/api/recommend", {
       method: "POST",
       headers: {
         "Content-Type":  "application/json",

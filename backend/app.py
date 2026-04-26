@@ -10,7 +10,7 @@ app = Flask(__name__)
 app.config["JWT_SECRET_KEY"] = "internmatch-secret-key"
 app.config["JWT_ACCESS_TOKEN_EXPIRES"] = False
 
-CORS(app, origins=["http://localhost:3000", "http://127.0.0.1:5500", "null"])
+CORS(app, origins="*")
 JWTManager(app)
 
 # ── Database ──────────────────────────────────────────────────
