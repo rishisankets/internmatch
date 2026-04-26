@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Login — InternMatch</title>
+  <link rel="stylesheet" href="styles.css" />
+  <link href="https://fonts.googleapis.com/css2?family=Syne:wght@700;800&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet" />
+</head>
+<body>
+
+  <!-- NAVBAR -->
+  <nav class="navbar">
+    <div class="logo">
+      <div class="logo-mark">IM</div>
+      <span class="logo-text">InternMatch</span>
+    </div>
+    <div class="nav-links">
+      <a href="index.html">Home</a>
+      <a href="signup.html" class="btn-primary">Sign Up</a>
+    </div>
+  </nav>
+
+  <!-- AUTH PAGE -->
+  <div class="auth-page">
+
+    <!-- Left panel -->
+    <div class="auth-left">
+      <h2>Welcome back.</h2>
+      <p>Your next internship is one quiz away.</p>
+    </div>
+
+    <!-- Right panel -->
+    <div class="auth-right">
+      <div class="auth-card">
+        <h1>Sign in</h1>
+        <p class="sub">No account? <a href="signup.html">Create one</a></p>
+
+        <div class="error-box" id="errorBox" style="display:none;"></div>
+
+        <form class="form" id="loginForm">
+          <div class="form-group">
+            <label>Email</label>
+            <input type="email" id="email" placeholder="you@example.com" required />
+          </div>
+          <div class="form-group">
+            <label>Password</label>
+            <input type="password" id="password" placeholder="••••••••" required />
+          </div>
+          <button type="submit" class="btn-submit" id="submitBtn">Sign in →</button>
+        </form>
+      </div>
+    </div>
+
+  </div>
+
+  <script src="auth.js"></script>
+  <script>
+    document.getElementById("loginForm").addEventListener("submit", async function(e) {
+      e.preventDefault();
+      const email    = document.getElementById("email").value;
+      const password = document.getElementById("password").value;
+      await login(email, password);
+    });
+  </script>
+
+</body>
+</html>

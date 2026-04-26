@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Quiz — InternMatch</title>
+  <link rel="stylesheet" href="styles.css" />
+  <link href="https://fonts.googleapis.com/css2?family=Syne:wght@700;800&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet" />
+</head>
+<body>
+
+  <!-- NAVBAR -->
+  <nav class="navbar">
+    <div class="logo">
+      <div class="logo-mark">IM</div>
+      <span class="logo-text">InternMatch</span>
+    </div>
+    <div class="nav-links">
+      <button class="btn-outline" onclick="logout()">Logout</button>
+    </div>
+  </nav>
+
+  <!-- QUIZ -->
+  <div class="quiz-page">
+
+    <!-- Progress bar -->
+    <div class="progress-bar-wrap">
+      <div class="progress-bar" id="progressBar"></div>
+    </div>
+    <p class="progress-text" id="progressText">Question 1 of 10</p>
+
+    <!-- Question card -->
+    <div class="quiz-card" id="quizCard">
+      <h2 class="question-text" id="questionText"></h2>
+      <div class="options-grid" id="optionsGrid"></div>
+      <div class="quiz-nav">
+        <button class="btn-outline" id="backBtn" onclick="goBack()" style="display:none;">← Back</button>
+        <button class="btn-primary" id="nextBtn" onclick="goNext()" disabled>Next →</button>
+      </div>
+    </div>
+
+  </div>
+
+  <script src="quiz.js"></script>
+</body>
+</html>

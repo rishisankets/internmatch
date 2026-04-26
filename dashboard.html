@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Dashboard — InternMatch</title>
+  <link rel="stylesheet" href="styles.css" />
+  <link href="https://fonts.googleapis.com/css2?family=Syne:wght@700;800&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet" />
+</head>
+<body>
+
+  <nav class="navbar">
+    <div class="logo">
+      <div class="logo-mark">IM</div>
+      <span class="logo-text">InternMatch</span>
+    </div>
+    <div class="nav-links">
+      <span id="greeting" class="nav-link"></span>
+      <a href="quiz.html" class="nav-link">Retake Quiz</a>
+      <button class="btn-outline" onclick="logout()">Logout</button>
+    </div>
+  </nav>
+
+  <div class="dashboard-page">
+
+    <!-- Stats -->
+    <div class="dash-stats">
+      <div class="stat-card">
+        <span class="stat-num" id="statMatches">—</span>
+        <span class="stat-label">Matches Found</span>
+      </div>
+      <div class="stat-card">
+        <span class="stat-num" id="statTop">—</span>
+        <span class="stat-label">Top Match %</span>
+      </div>
+      <div class="stat-card">
+        <span class="stat-num" id="statField">—</span>
+        <span class="stat-label">Your Field</span>
+      </div>
+    </div>
+
+    <!-- Top 3 results -->
+    <div class="dash-section">
+      <div class="dash-section-header">
+        <h2>Your Top Matches</h2>
+        <a href="results.html" class="nav-link">See all →</a>
+      </div>
+      <div id="dashResults" class="results-grid">
+        <p style="color:var(--muted)">No results yet. <a href="quiz.html" style="color:var(--primary);font-weight:600">Take the quiz!</a></p>
+      </div>
+    </div>
+
+    <!-- Quick links -->
+    <div class="dash-section">
+      <h2>Quick Links</h2>
+      <div class="quick-actions">
+        <a href="quiz.html"    class="action-card">📝<span>Take Quiz</span></a>
+        <a href="results.html" class="action-card">🎯<span>Results</span></a>
+        <a href="map.html"     class="action-card">🗺️<span>View Map</span></a>
+      </div>
+    </div>
+
+  </div>
+
+  <script src="dashboard.js"></script>
+</body>
+</html>
