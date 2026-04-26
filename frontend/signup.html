@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Sign Up — InternMatch</title>
+  <link rel="stylesheet" href="styles.css" />
+  <link href="https://fonts.googleapis.com/css2?family=Syne:wght@700;800&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet" />
+</head>
+<body>
+
+  <!-- NAVBAR -->
+  <nav class="navbar">
+    <div class="logo">
+      <div class="logo-mark">IM</div>
+      <span class="logo-text">InternMatch</span>
+    </div>
+    <div class="nav-links">
+      <a href="index.html">Home</a>
+      <a href="login.html" class="btn-outline">Login</a>
+    </div>
+  </nav>
+
+  <!-- AUTH PAGE -->
+  <div class="auth-page">
+
+    <!-- Left panel -->
+    <div class="auth-left">
+      <h2>Start your journey.</h2>
+      <p>Answer 10 questions. Get matched with internships in every field.</p>
+    </div>
+
+    <!-- Right panel -->
+    <div class="auth-right">
+      <div class="auth-card">
+        <h1>Create account</h1>
+        <p class="sub">Already have an account? <a href="login.html">Sign in</a></p>
+
+        <div class="error-box" id="errorBox" style="display:none;"></div>
+
+        <form class="form" id="signupForm">
+          <div class="form-group">
+            <label>Full name</label>
+            <input type="text" id="name" placeholder="Jane Doe" required />
+          </div>
+          <div class="form-group">
+            <label>Email</label>
+            <input type="email" id="email" placeholder="you@example.com" required />
+          </div>
+          <div class="form-group">
+            <label>Password</label>
+            <input type="password" id="password" placeholder="Min 6 characters" required />
+          </div>
+          <button type="submit" class="btn-submit" id="submitBtn">Create account →</button>
+        </form>
+      </div>
+    </div>
+
+  </div>
+
+  <script src="auth.js"></script>
+  <script>
+    document.getElementById("signupForm").addEventListener("submit", async function(e) {
+      e.preventDefault();
+      const name     = document.getElementById("name").value;
+      const email    = document.getElementById("email").value;
+      const password = document.getElementById("password").value;
+      await signup(name, email, password);
+    });
+  </script>
+
+</body>
+</html>

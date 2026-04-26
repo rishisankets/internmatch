@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Results — InternMatch</title>
+  <link rel="stylesheet" href="styles.css" />
+  <link href="https://fonts.googleapis.com/css2?family=Syne:wght@700;800&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet" />
+</head>
+<body>
+
+  <!-- NAVBAR -->
+  <a href="map.html">View Map 🗺️</a>
+  <nav class="navbar">
+    <div class="logo">
+      <div class="logo-mark">IM</div>
+      <span class="logo-text">InternMatch</span>
+    </div>
+    <div class="nav-links">
+      <a href="dashboard.html" class="nav-link">Dashboard</a>
+      <a href="map.html" class="btn-primary">View on Map 🗺️</a>
+      <button class="btn-outline" onclick="logout()">Logout</button>
+    </div>
+  </nav>
+
+  <!-- RESULTS -->
+  <div class="results-page">
+    <div class="results-header">
+      <h1>Your Matches</h1>
+      <p id="resultsSubtitle">Finding the best internships for you...</p>
+    </div>
+
+    <div id="resultsGrid" class="results-grid">
+      <!-- Cards injected by results.js -->
+      <div class="loading">⏳ Loading recommendations...</div>
+    </div>
+
+    <div class="results-actions">
+      <a href="quiz.html" class="btn-outline">Retake Quiz</a>
+    </div>
+  </div>
+
+  <script src="results.js"></script>
+</body>
+</html>
