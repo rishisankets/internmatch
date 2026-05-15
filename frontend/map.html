@@ -7,6 +7,17 @@
   <link rel="stylesheet" href="styles.css" />
   <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" />
   <link href="https://fonts.googleapis.com/css2?family=Syne:wght@700;800&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet" />
+
+  <style>
+    /* CRITICAL: Leaflet needs an explicit pixel height — % alone won't work */
+    #map {
+      width: 100%;
+      height: calc(100vh - 180px);   /* full viewport minus navbar + header */
+      min-height: 420px;
+      border-radius: 12px;
+      z-index: 0;                    /* keep below navbar (which should be z>0) */
+    }
+  </style>
 </head>
 <body>
 
@@ -16,7 +27,7 @@
       <span class="logo-text">InternMatch</span>
     </div>
     <div class="nav-links">
-      <a href="results.html" class="nav-link">← Results</a>
+      <a href="results.html"   class="nav-link">← Results</a>
       <a href="dashboard.html" class="nav-link">Dashboard</a>
       <button class="btn-outline" onclick="logout()">Logout</button>
     </div>
@@ -25,11 +36,12 @@
   <div class="map-page">
     <div class="map-header">
       <h1>Internship Map</h1>
-      <p id="mapSubtitle">Loading...</p>
+      <p id="mapSubtitle">Loading…</p>
     </div>
     <div id="map"></div>
   </div>
 
+  <!-- Leaflet JS must come BEFORE map.js -->
   <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
   <script src="map.js"></script>
 </body>

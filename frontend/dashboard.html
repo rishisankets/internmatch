@@ -16,7 +16,7 @@
     </div>
     <div class="nav-links">
       <span id="greeting" class="nav-link"></span>
-      <a href="quiz.html" class="nav-link">Retake Quiz</a>
+      <a href="quiz.html"    class="nav-link">Retake Quiz</a>
       <button class="btn-outline" onclick="logout()">Logout</button>
     </div>
   </nav>
@@ -26,15 +26,15 @@
     <!-- Stats -->
     <div class="dash-stats">
       <div class="stat-card">
-        <span class="stat-num" id="statMatches">—</span>
+        <span class="stat-num"   id="statMatches">—</span>
         <span class="stat-label">Matches Found</span>
       </div>
       <div class="stat-card">
-        <span class="stat-num" id="statTop">—</span>
+        <span class="stat-num"   id="statTop">—</span>
         <span class="stat-label">Top Match %</span>
       </div>
       <div class="stat-card">
-        <span class="stat-num" id="statField">—</span>
+        <span class="stat-num"   id="statField">—</span>
         <span class="stat-label">Your Field</span>
       </div>
     </div>
@@ -46,7 +46,10 @@
         <a href="results.html" class="nav-link">See all →</a>
       </div>
       <div id="dashResults" class="results-grid">
-        <p style="color:var(--muted)">No results yet. <a href="quiz.html" style="color:var(--primary);font-weight:600">Take the quiz!</a></p>
+        <p style="color:var(--muted)">
+          No results yet.
+          <a href="quiz.html" style="color:var(--primary);font-weight:600">Take the quiz!</a>
+        </p>
       </div>
     </div>
 
@@ -62,6 +65,7 @@
 
   </div>
 
+  <!-- script at bottom so DOM is ready before JS runs -->
   <script src="dashboard.js"></script>
 </body>
 </html>
