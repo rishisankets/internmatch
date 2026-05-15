@@ -1,4 +1,3 @@
-// ── Auth guard ────────────────────────────────────────────────────────────────
 if (!localStorage.getItem("token")) window.location.href = "login.html";
 
 function logout() {
@@ -7,7 +6,6 @@ function logout() {
   window.location.href = "index.html";
 }
 
-// ── City → coords lookup ──────────────────────────────────────────────────────
 const CITIES = {
   "bangalore":  [12.9716, 77.5946],
   "bengaluru":  [12.9716, 77.5946],
@@ -20,8 +18,10 @@ const CITIES = {
   "ahmedabad":  [23.0225, 72.5714],
   "jaipur":     [26.9124, 75.7873],
   "noida":      [28.5355, 77.3910],
-  "gurugram":   [28.4595, 77.0266],
   "gurgaon":    [28.4595, 77.0266],
+  "gurugram":   [28.4595, 77.0266],
+  "karnataka":  [15.3173, 75.7139],
+  "maharashtra":[19.7515, 75.7139],
 };
 
 function getCoords(location) {
@@ -30,102 +30,80 @@ function getCoords(location) {
   for (const city in CITIES) {
     if (lower.includes(city)) return CITIES[city];
   }
-  return [20.5937, 78.9629];   // centre of India as fallback
+  return [20.5937, 78.9629];
 }
 
 function getColor(match) {
   if (match >= 70) return "#22c55e";
   if (match >= 40) return "#e8a838";
-  return "#4a5568";
+  return "#ef4444";  // red for low match so pins are visible
 }
 
-// ── Build the pin HTML ────────────────────────────────────────────────────────
-// Avoid flexbox inside divIcon — use line-height centering instead (more reliable)
-function makePinHTML(label, color) {
-  return `
-    <div style="
-      position: relative;
-      width: 32px; height: 32px;
-    ">
-      <div style="
-        background: ${color};
-        width: 32px; height: 32px;
-        border-radius: 50% 50% 50% 0;
-        transform: rotate(-45deg);
-        border: 2.5px solid white;
-        box-shadow: 0 2px 8px rgba(0,0,0,0.35);
-        position: absolute; top: 0; left: 0;
-      "></div>
-      <span style="
-        position: absolute;
-        top: 6px; left: 0;
-        width: 32px;
-        text-align: center;
-        color: white;
-        font-weight: 800;
-        font-size: 11px;
-        line-height: 1;
-        font-family: sans-serif;
-        pointer-events: none;
-      ">${label}</span>
-    </div>
-  `;
-}
-
-// ── Initialise map ────────────────────────────────────────────────────────────
-const map = L.map("map", { zoomControl: true }).setView([20.5937, 78.9629], 5);
-
+// Initialize map
+const map = L.map("map").setView([20.5937, 78.9629], 5);
 L.tileLayer("https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png", {
-  attribution: "© <a href='https://www.openstreetmap.org/copyright'>OpenStreetMap</a> contributors",
-  maxZoom: 18,
+  attribution: "© OpenStreetMap"
 }).addTo(map);
 
-// Force Leaflet to recalculate size in case the container was 0px at init time
-setTimeout(() => map.invalidateSize(), 100);
-
-// ── Load results ──────────────────────────────────────────────────────────────
+// Get results
 let results = [];
 try {
   const stored = localStorage.getItem("internshipResults");
   if (stored) results = JSON.parse(stored);
-} catch (_) {}
+} catch (e) { results = []; }
 
-const subtitle = document.getElementById("mapSubtitle");
+console.log("Map results:", results.length, results);
 
 if (!results || results.length === 0) {
-  subtitle.textContent = "No results found. Please take the quiz first!";
+  document.getElementById("mapSubtitle").textContent =
+    "No results found. Please take the quiz and view results first!";
 } else {
-  subtitle.textContent = `Showing ${results.length} internship${results.length !== 1 ? "s" : ""} — click a pin for details`;
+  document.getElementById("mapSubtitle").textContent =
+    `Showing ${results.length} internships — click a pin for details`;
+
+  // Add slight offset to pins at same location so they don't overlap
+  const coordCount = {};
 
   results.forEach((job, i) => {
     const color  = getColor(job.match);
-    const coords = getCoords(job.location);
+    let coords   = getCoords(job.location);
+
+    // Offset duplicate coords slightly
+    const key = coords.toString();
+    coordCount[key] = (coordCount[key] || 0) + 1;
+    if (coordCount[key] > 1) {
+      coords = [
+        coords[0] + (Math.random() - 0.5) * 0.5,
+        coords[1] + (Math.random() - 0.5) * 0.5
+      ];
+    }
 
     const icon = L.divIcon({
-      className:   "",           // clear Leaflet's default white box
-      html:        makePinHTML(i + 1, color),
-      iconSize:    [32, 32],
-      iconAnchor:  [16, 32],     // bottom-centre of pin touches the location
-      popupAnchor: [0, -36],     // popup appears above the pin
+      className: "",
+      html: `<div style="
+        background:${color};color:white;width:32px;height:32px;
+        border-radius:50% 50% 50% 0;transform:rotate(-45deg);
+        display:flex;align-items:center;justify-content:center;
+        font-weight:800;font-size:11px;border:2px solid white;
+        box-shadow:0 2px 8px rgba(0,0,0,0.4)">
+          <span style="transform:rotate(45deg)">${i + 1}</span>
+        </div>`,
+      iconSize: [32, 32],
+      iconAnchor: [16, 32],
+      popupAnchor: [0, -34]
     });
 
-    L.marker(coords, { icon })
-      .addTo(map)
-      .bindPopup(`
-        <div style="font-family:DM Sans,sans-serif;min-width:210px;padding:4px 2px">
-          <p style="margin:0 0 4px;font-size:14px;font-weight:700;color:#0a0f1e">
-            ${job.title || "Untitled"}
-          </p>
-          <p style="margin:0 0 2px;font-size:12px;color:#4a5568">🏢 ${job.company  || "Unknown"}</p>
-          <p style="margin:0 0 8px;font-size:12px;color:#4a5568">📍 ${job.location || "India"}</p>
-          <p style="margin:0 0 10px;font-size:13px;font-weight:700;color:${color}">
-            ${job.match}% match
-          </p>
-          <a href="${job.url || '#'}" target="_blank"
-             style="display:inline-block;background:#1a3a6b;color:white;
-                    padding:6px 16px;border-radius:6px;text-decoration:none;
-                    font-size:12px;font-weight:600">Apply →</a>
-        </div>
-      `);
+    L.marker(coords, { icon }).addTo(map).bindPopup(`
+      <div style="font-family:sans-serif;min-width:200px;padding:4px">
+        <b style="font-size:14px">${job.title}</b><br/>
+        <span style="color:#4a5568;font-size:12px">🏢 ${job.company}</span><br/>
+        <span style="color:#4a5568;font-size:12px">📍 ${job.location}</span><br/>
+        <span style="color:${color};font-weight:700;font-size:13px;display:block;margin:6px 0">${job.match}% match</span>
+        <a href="${job.url}" target="_blank"
+           style="background:#1a3a6b;color:white;padding:6px 14px;
+                  border-radius:6px;text-decoration:none;font-size:12px;
+                  font-weight:600;display:inline-block">Apply →</a>
+      </div>
+    `);
   });
 }
