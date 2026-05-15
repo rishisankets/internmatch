@@ -1,4 +1,5 @@
 // Redirect if not logged in
+
 if (!localStorage.getItem("token")) window.location.href = "login.html";
 
 function logout() {
@@ -27,14 +28,14 @@ async function loadResults() {
       body: JSON.stringify({ answers })
     });
 
-    const data = await response.json();
+  const data = await response.json();
+  const results = data.results;
 
-    // Save for map
-    localStorage.setItem("jobs", JSON.stringify(data.results));
+// Save results for map page
+localStorage.setItem("internshipResults", JSON.stringify(results));
 
-    displayResults(data.results);
-
-    if (!data.results || data.results.length === 0) {
+if (!results || results.length === 0) {
+  // ... rest of your code
       document.getElementById("resultsGrid").innerHTML = "<p>No matches found. Try retaking the quiz!</p>";
       return;
     }
