@@ -10,54 +10,142 @@ function logout() {
 // ── Questions ─────────────────────────────────────────────────
 const QUESTIONS = [
   {
-    question: "Which domain are you targeting?",
+    question: "What job title are you targeting?",
     multi: true,
-    options: ["Software Development", "Data Science / AI", "Cybersecurity", "Cloud / DevOps", "UI/UX Design", "Finance & Fintech", "Marketing & Growth", "Research & Academia"]
+    options: [
+      "Software Developer",
+      "Data Analyst",
+      "Frontend Developer",
+      "Backend Developer",
+      "Machine Learning Engineer",
+      "Business Analyst",
+      "Digital Marketing Executive",
+      "Financial Analyst"
+    ]
   },
   {
-    question: "Which programming languages do you know?",
+    question: "What are your strongest technical skills?",
     multi: true,
-    options: ["Python", "JavaScript", "Java", "C / C++", "SQL", "None yet"]
+    options: [
+      "Python",
+      "JavaScript",
+      "React",
+      "SQL",
+      "Machine Learning",
+      "Java",
+      "Excel",
+      "Node.js"
+    ]
   },
   {
-    question: "What is your current skill level?",
+    question: "What industry do you want to work in?",
+    multi: true,
+    options: [
+      "Information Technology",
+      "Banking and Finance",
+      "E-commerce",
+      "Healthcare",
+      "Consulting",
+      "Education Technology",
+      "Media and Advertising",
+      "Manufacturing"
+    ]
+  },
+  {
+    question: "What type of work do you enjoy most?",
+    multi: true,
+    options: [
+      "Building web applications",
+      "Analysing data and reports",
+      "Machine learning and AI",
+      "Managing social media",
+      "Financial modelling",
+      "Testing and quality assurance",
+      "Cloud and DevOps",
+      "Customer relationship management"
+    ]
+  },
+  {
+    question: "Which of these tools do you know?",
+    multi: true,
+    options: [
+      "Git and GitHub",
+      "Tableau or Power BI",
+      "AWS or Azure",
+      "Figma or Adobe XD",
+      "Google Analytics",
+      "Salesforce",
+      "TensorFlow or PyTorch",
+      "Microsoft Office"
+    ]
+  },
+  {
+    question: "What soft skills do you bring?",
+    multi: true,
+    options: [
+      "Communication and presentation",
+      "Problem solving and critical thinking",
+      "Team collaboration",
+      "Project management",
+      "Client handling",
+      "Research and documentation",
+      "Attention to detail",
+      "Time management"
+    ]
+  },
+  {
+    question: "What kind of role responsibilities excite you?",
+    multi: true,
+    options: [
+      "Writing and debugging code",
+      "Building dashboards and reports",
+      "Running marketing campaigns",
+      "Handling customer queries",
+      "Conducting research and analysis",
+      "Designing user interfaces",
+      "Managing databases",
+      "Supporting finance and accounting"
+    ]
+  },
+  {
+    question: "Where do you want to work?",
     multi: false,
-    options: ["Complete beginner", "Know the basics", "Built personal projects", "Done an internship before"]
+    options: [
+      "Bangalore",
+      "Mumbai",
+      "Delhi",
+      "Hyderabad",
+      "Chennai",
+      "Pune",
+      "Remote",
+      "Any location"
+    ]
   },
   {
-    question: "What kind of work excites you most?",
+    question: "What kind of company are you targeting?",
     multi: true,
-    options: ["Building products", "Analysing data", "Designing experiences", "Solving security problems", "Managing systems", "Writing & communication"]
+    options: [
+      "Product based IT company",
+      "Service based IT company",
+      "Startup",
+      "Banking or NBFC",
+      "Consulting firm",
+      "MNC",
+      "Government or PSU",
+      "NGO or Non profit"
+    ]
   },
   {
-    question: "What type of company do you want to work at?",
+    question: "What is your career goal from this role?",
     multi: true,
-    options: ["Early stage startup", "Mid-size tech company", "Large corporation", "Government / PSU", "Non-profit / NGO"]
-  },
-  {
-    question: "How long can you commit to an internship?",
-    multi: false,
-    options: ["1 month", "2 months", "3 months", "6 months"]
-  },
-  {
-    question: "What is your work preference?",
-    multi: false,
-    options: ["Remote only", "On-site only", "Hybrid", "No preference"]
-  },
-  {
-    question: "Which city do you prefer?",
-    multi: true,
-    options: ["Bangalore", "Mumbai", "Delhi", "Hyderabad", "Chennai", "Any city"]
-  },
-  {
-    question: "What is your primary goal from this internship?",
-    multi: true,
-    options: ["Get a PPO", "Build my portfolio", "Learn a specific skill", "Network with professionals"]
-  },
-  {
-    question: "What matters most to you?",
-    multi: true,
-    options: ["High stipend", "Brand name on resume", "Mentorship quality", "Flexibility & work life balance"]
+    options: [
+      "Full time placement after internship",
+      "Build real world experience",
+      "Learn from industry mentors",
+      "Work on live projects",
+      "Strengthen my resume",
+      "Transition into a new field"
+    ]
   }
 ];
 
